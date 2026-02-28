@@ -1,0 +1,10 @@
+# --- Librerías base para comunicación y datos ---
+requests
+pandas
+
+# --- Inteligencia Artificial y Ciencia de Datos ---
+scikit-learn
+matplotlib
+
+# --- Dashboard web y visualización ---
+streamlit
