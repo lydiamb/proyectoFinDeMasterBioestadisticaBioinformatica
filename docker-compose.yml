@@ -1,0 +1,52 @@
+services:
+  # 1. Mensajería (Kafka y Zookeeper) - Tu configuración actual mejorada
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      # IMPORTANTE: Definimos acceso interno para Docker y externo para tu IDE (localhost)
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  # 2. Tu Backend de Java
+  backend-medico:
+    build: ./monitoreoSaludTiempoReal  # Nombre de tu carpeta de Java
+    container_name: backend-java
+    ports:
+      - "8080:8080"
+    environment:
+      # Le decimos a Java que busque a Kafka dentro de la red de Docker
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+    depends_on:
+      - kafka
+
+  # 3. Tu Dashboard de Python
+  dashboard-ia:
+    build: ./monitoreoSaludTiempoReal/analisis-ia  # Nombre de tu carpeta de Python
+    container_name: dashboard-ia    
+    ports:
+      - "8501:8501"
+    environment:
+      # Le decimos a Python que busque a Java por su nombre de servicio
+      - JAVA_API_URL=http://backend-medico:8080/alertas
+    depends_on:
+      - backend-medico
+
+networks:
+  default:
+    name: red-hospitalaria

@@ -1,0 +1,31 @@
+# --- JAVA (Maven) ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mtj.tmp/
+
+# --- PYTHON ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env
+.streamlit/config.toml
+
+# --- IDEs (Eclipse / VS Code / IntelliJ) ---
+.settings/
+.project
+.classpath
+.factorypath
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# --- DOCKER ---
+.docker/
+# Si guardas datos de Kafka en volúmenes locales, ignóralos:
+data/
