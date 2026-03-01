@@ -2,6 +2,7 @@
 library(ggplot2)
 library(gridExtra) # Para organizar tablas y gráficos en el mismo PDF
 library(grid)
+library(qrcode)
 
 # 1. Leer datos y metadatos
 datos <- read.csv("datos_para_r.csv")
@@ -65,8 +66,21 @@ grid.reorder <- function() {
   print(p, newpage = FALSE) 
   popViewport()
   
+  
+  # 1. Crear el QR (puedes poner la URL de tu Dashboard de Java)
+  # Si quieres que tu móvil entre de verdad, pon la IP de tu PC, ej: "http://192.168.1.XX:8080/dashboard"
+  url_dashboard <- "http://192.168.1.41:8080/dashboard" 
+  codigo_qr <- qr_code(url_dashboard)
+
+  # 2. Dibujar el QR en la esquina inferior derecha del PDF
+  grid.text("Escanee para ver historial completo:", y=unit(0.18, "npc"), x=unit(0.85, "npc"), gp=gpar(fontsize=8))
+  pushViewport(viewport(x=unit(0.85, "npc"), y=unit(0.1, "npc"), width=unit(0.12, "npc"), height=unit(0.12, "npc")))
+  plot(codigo_qr)
+  popViewport()
+
   # Pie de página
   grid.text("Firma del Sistema de IA: Verificado", y=unit(0.05, "npc"), gp=gpar(fontsize=8, fontitalic=T, col="grey"))
+
 
 }
 
