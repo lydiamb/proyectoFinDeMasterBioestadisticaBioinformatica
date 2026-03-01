@@ -2,7 +2,9 @@ import streamlit as st
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import subprocess
+import os
+          
 # Inicializar la memoria del Dashboard si no existe
 if 'historial_envios' not in st.session_state:
     st.session_state.historial_envios = []
@@ -208,3 +210,34 @@ if not df.empty:
                 st.warning(p)
         else:
             st.write("No hay intervenciones manuales registradas.")
+
+st.divider()
+st.subheader("🧬 Módulo de Bioestadística (R-Language)")
+st.write("Genera un informe detallado utilizando el motor estadístico R.")
+
+if st.button("📊 GENERAR REPORTE CLÍNICO EN R"):
+    with st.spinner("Invocando al motor de R..."):
+        # 1. Exportamos los datos actuales a CSV
+        df.to_csv("datos_para_r.csv", index=False)
+        
+        # 2. Ejecutamos el script de R
+        try:
+            # Ejecutamos Rscript (asegúrate de tener R instalado en el sistema)
+            resultado = subprocess.run(["Rscript", "analisis_clinico.R"], capture_output=True, text=True)
+            
+            if resultado.returncode == 0:
+                st.success("Informe generado con éxito.")
+                
+                # 3. Botón para descargar el PDF generado por R
+                if os.path.exists("informe_estadistico.pdf"):
+                    with open("informe_estadistico.pdf", "rb") as f:
+                        st.download_button(
+                            label="📥 Descargar PDF de R",
+                            data=f,
+                            file_name="analisis_bioestadistico.pdf",
+                            mime="application/pdf"
+                        )
+            else:
+                st.error(f"Error en R: {resultado.stderr}")
+        except Exception as e:
+            st.error(f"No se pudo encontrar el ejecutable de R: {e}")            
