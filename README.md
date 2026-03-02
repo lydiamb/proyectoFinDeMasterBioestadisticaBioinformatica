@@ -25,7 +25,7 @@ Sigue estos pasos para poner en marcha todo el ecosistema:
 	   git clone [https://github.com/lydiamb/proyectoFinDeMasterBioestadisticaBioinformatica.git](https://github.com/lydiamb/proyectoFinDeMasterBioestadisticaBioinformatica.git)
 	   cd proyectoFinDeMasterBioestadisticaBioinformatica
    
-2. **u><b>Levantar el sistema con Docker:</b></u>**
+2. **<u><b>Levantar el sistema con Docker:</b></u>**
 
 	Abre una terminal en la carpeta raíz del proyecto y ejecuta:
 	
