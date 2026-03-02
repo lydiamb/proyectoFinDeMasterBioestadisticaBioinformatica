@@ -25,7 +25,7 @@ Sigue estos pasos para poner en marcha todo el ecosistema:
 	   git clone [https://github.com/lydiamb/proyectoFinDeMasterBioestadisticaBioinformatica.git](https://github.com/lydiamb/proyectoFinDeMasterBioestadisticaBioinformatica.git)
 	   cd proyectoFinDeMasterBioestadisticaBioinformatica
    
-2. **<u><b>Levantar el sistema con Docker:</b></u>**
+2. **Levantar el sistema con Docker:**
 
 	Abre una terminal en la carpeta raíz del proyecto y ejecuta:
 	
@@ -41,6 +41,7 @@ Sigue estos pasos para poner en marcha todo el ecosistema:
 	API de Control (Java): http://localhost:8080/alertas
 
 ## 🏗️ Arquitectura del Proyecto
+
 El sistema se divide en cuatro módulos principales que trabajan en armonía:
 
 <table>
@@ -76,6 +77,7 @@ El sistema se divide en cuatro módulos principales que trabajan en armonía:
 </table>
 
 ## 📊 Funcionalidades Destacadas
+
 Detección de Anomalías: Identificación automática de derivas peligrosas en el ritmo cardíaco.
 
 Analítica Predictiva: Uso de regresión lineal para anticipar el estado del paciente en los próximos 60 segundos.
@@ -85,4 +87,5 @@ Reportes Clínicos: Botón integrado para generar un análisis bioestadístico e
 Acceso Digital QR: Cada informe incluye un código QR que permite al médico volver al panel en tiempo real desde cualquier dispositivo móvil.
 
 ## 📝 Autor
+
 Lydia Manzanares - Proyecto de Fin de Máster Bioinformática y bioestadística - 2026
