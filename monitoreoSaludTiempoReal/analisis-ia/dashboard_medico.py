@@ -66,19 +66,30 @@ if not df.empty:
     with col_graf1:
         st.subheader("📈 Análisis de Frecuencia Cardíaca")
         fig_pulso, ax_pulso = plt.subplots(figsize=(8, 4))
-        ax_pulso.plot(df.index, df['frecuencia'], color='#d3d3d3', alpha=0.5)
-        ax_pulso.plot(df.index, df['tendencia_frecuencia'], color='#ff4b4b', linewidth=2)
-        ax_pulso.axhline(y=100, color='r', linestyle='--', alpha=0.3)
-        ax_pulso.axhline(y=60, color='g', linestyle='--', alpha=0.3)
-        st.pyplot(fig_pulso) 
-
+        # Añadimos labels para la leyenda
+        ax_pulso.plot(df.index, df['frecuencia'], color='#d3d3d3', alpha=0.5, label='Lectura Real')
+        ax_pulso.plot(df.index, df['tendencia_frecuencia'], color='#ff4b4b', linewidth=2, label='Tendencia (Media Móvil)')
+        
+        # Líneas de referencia
+        ax_pulso.axhline(y=100, color='r', linestyle='--', alpha=0.3, label='Límite Taquicardia')
+        ax_pulso.axhline(y=60, color='g', linestyle='--', alpha=0.3, label='Límite Bradicardia')
+        
+        ax_pulso.legend(loc='upper right', fontsize='small') # <--- ESTO ACTIVA LA LEYENDA
+        ax_pulso.grid(axis='y', linestyle=':', alpha=0.5)   # <--- AÑADE LÍNEAS HORIZONTALES
+        st.pyplot(fig_pulso)
+        
     with col_graf2:
         st.subheader("📉 Estabilidad de Oxígeno")
         fig_o2, ax_o2 = plt.subplots(figsize=(8, 4))
-        ax_o2.fill_between(df.index, df['oxigeno'], 90, color='#3498db', alpha=0.2)
-        ax_o2.plot(df.index, df['oxigeno'], color='#2980b9', linewidth=2)
+        # Añadimos label
+        ax_o2.fill_between(df.index, df['oxigeno'], 90, color='#3498db', alpha=0.2, label='Rango Seguro')
+        ax_o2.plot(df.index, df['oxigeno'], color='#2980b9', linewidth=2, label='Saturación SpO2')
+        
         ax_o2.set_ylim(85, 102) 
+        ax_o2.grid(axis='y', linestyle='--', alpha=0.7) # <--- ESTO ACTIVA LAS LÍNEAS HORIZONTALES
+        ax_o2.legend(loc='lower left', fontsize='small') # <--- ESTO ACTIVA LA LEYENDA
         st.pyplot(fig_o2)
+        
         
     # --- ANÁLISIS DE CORRELACIÓN ---
     st.divider()
@@ -92,6 +103,7 @@ if not df.empty:
         ax_corr.add_patch(rect)
         ax_corr.set_xlabel("Frecuencia Cardíaca (BPM)")
         ax_corr.set_ylabel("Saturación Oxígeno (%)")
+        ax_corr.legend() # Esto hará que aparezca el label "Zona Normalidad" que ya tienes en el código
         st.pyplot(fig_corr)
 
     with col_corr2:
