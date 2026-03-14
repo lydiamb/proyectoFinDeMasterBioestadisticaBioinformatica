@@ -17,7 +17,15 @@ features = ['frecuencia', 'oxigeno']
 model = IsolationForest(contamination=0.15, random_state=42)
 df['anomalia'] = model.fit_predict(df[features])
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+# 3. Filtrar las anomalías
+=======
 # 3. Filtrar las anomalías (ESTO ES LO QUE FALTABA)
+>>>>>>> e49bf05 (suida inicial de archivos del proyecto)
+=======
+# 3. Filtrar las anomalías
+>>>>>>> 426f304 (revisión comentarios)
 # Filtramos el dataframe para quedarnos solo con los que el modelo marcó como -1
 alertas = df[df['anomalia'] == -1]
 
@@ -32,17 +40,39 @@ plt.grid(True, alpha=0.3)
 legend1 = plt.legend(*scatter.legend_elements(), title="Estado (1=Normal, -1=Anomalía)")
 plt.gca().add_artist(legend1)
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Mostramos la gráfica
+=======
 # Mostramos la gráfica pero SIN BLOQUEAR (o ciérrala rápido para que siga el código)
+>>>>>>> e49bf05 (suida inicial de archivos del proyecto)
+=======
+# Mostramos la gráfica
+>>>>>>> 426f304 (revisión comentarios)
 plt.show()
 
 # 5. Enviar conclusiones de vuelta a Java
 print(f"🤖 Procesando {len(alertas)} anomalías para enviar a Java...")
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+print(f"🔍 Revisando datos para enviar a Java. Total anomalías encontradas: {len(alertas)}")
+
+=======
 # ... (después de plt.show())
 
 print(f"🔍 Revisando datos para enviar a Java. Total anomalías encontradas: {len(alertas)}")
 
 # ... (después de plt.show())
+>>>>>>> e49bf05 (suida inicial de archivos del proyecto)
+=======
+
+
+print(f"🔍 Revisando datos para enviar a Java. Total anomalías encontradas: {len(alertas)}")
+
+>>>>>>> 426f304 (revisión comentarios)
 
 print("\n--- 🕵️ INVESTIGANDO COLUMNAS ---")
 columnas = list(df.columns)

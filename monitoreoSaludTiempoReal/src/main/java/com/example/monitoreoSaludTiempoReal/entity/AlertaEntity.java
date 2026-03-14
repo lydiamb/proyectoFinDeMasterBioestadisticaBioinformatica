@@ -13,7 +13,15 @@ public class AlertaEntity {
     private int oxigeno;
     private LocalDateTime fecha = LocalDateTime.now();
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    // Constructores, Getters y Setters
+=======
     // Constructores, Getters y Setters (o usa Lombok si sabes)
+>>>>>>> e49bf05 (suida inicial de archivos del proyecto)
+=======
+    // Constructores, Getters y Setters
+>>>>>>> 426f304 (revisión comentarios)
     public AlertaEntity() {}
     public AlertaEntity(String pacienteId, int frecuencia, int oxigeno) {
         this.pacienteId = pacienteId;
