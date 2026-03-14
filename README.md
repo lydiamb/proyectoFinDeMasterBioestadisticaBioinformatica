@@ -83,7 +83,7 @@ El sistema se divide en cuatro módulos principales que trabajan en armonía:
 
 * Analítica Predictiva: Uso de regresión lineal para anticipar el estado del paciente en los próximos 60 segundos.
 
-* Reportes Clínicos: Botón integrado para generar un análisis bioestadístico en PDF mediante el motor de R.
+* Reportes Clínicos: Botón integrado para generar un análisis Bioestadístico en PDF mediante el motor de R.
 
 * Acceso Digital QR: Cada informe incluye un código QR que permite al médico volver al panel en tiempo real desde cualquier dispositivo móvil.
 
